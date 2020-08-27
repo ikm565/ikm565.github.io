@@ -1,177 +1,244 @@
+<!DOCTYPE html>
 <html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      james ruslin&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
 
-<head>
-    <meta charset="utf-8">
+  
     
-    <title>Archives | james ruslin&#39;s blog</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
 
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/favicon/favicon.ico">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
     
-<link rel="stylesheet" href="/blog/css/main.css">
+<script src="/js/qrious.js"></script>
 
+  
+  
     
-<link rel="stylesheet" href="/blog/css/tagplugins.css">
+<script src="/js/gitment.js"></script>
 
-    
-<link rel="stylesheet" href="/blog/css/highlight.css">
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
 
-    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
 
 
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/blog/atom.xml" title="james ruslin&#39;s blog" type="application/atom+xml" />
-    
+  
 <meta name="generator" content="Hexo 5.0.2"></head>
-
-<body>
-  <div class="blog-header">
-   <a id="menu-nav-icon"><img src="/blog/image/menu.png"/></a>
-   <div class="nav-container">
-     <nav id="main-nav">
-       
-         <a class="main-nav-link" href="/blog/">Home</a>
-       
-         <a class="main-nav-link" href="/blog/archives">Archives</a>
-       
-     </nav>
-   </div>
-   <!--
-   <div id="search-form-wrap">
-     <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ikm565.github.io/blog"></form>
-   </div>
- -->
-    <h1 class="blog-title">james ruslin&#39;s blog</h1>
-    <p class="lead blog-description"></p>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
 </div>
 
-  <div id='main-part'>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>james ruslin's blog</span>
+    </a>
+    <ul class="right-list">
       
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
 
-<div class="article-index">
-      <div class="sidelist">
-        <div class="list">
-          
-              <h3>Archives</h3>
-          
-          
-          <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/08/">Aug - 2020</a><span class="archive-list-count">2</span></li></ul>          
+    <div id="article-banner">
+  <h2>Archives</h2>
+  <p class="post-date">文章归档</p>
+</div>
+<main class="app-body" id="archives">
+  
+  
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2020
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/title/" class="archive-title">2020最新windows10/anaconda/pytorch-gpu环境配置（附CUDA/cuDNN配置）</a>
+        <p class="archive-date">08-26</p>
       </div>
-    </div>
-    <div class="main lists">
-        
-        <!-- Date and Author -->
-<p class="blog-post-meta">
-    2020-08-26
     
-</p>
-
-<div class="blog-post">
-    <!-- Title -->
-    <!--
-    <h3 class="blog-post-title-archive">
-        <a href="/blog/title/">
-            2020最新windows10/anaconda/pytorch-gpu环境配置（附CUDA/cuDNN配置）
-        </a>
-    </h3>
-  -->
+      <div class="section-list-item">
+        <a href="/title/" class="archive-title">Hello World</a>
+        <p class="archive-date">08-19</p>
+      </div>
     
-      <h3 class="blog-post-title-archive">
-        <a href="/blog/title/">2020最新windows10/anaconda/pytorch-gpu环境配置（附CUDA/cuDNN配置）</a>
-      </h3>
-    
-
-
-    <hr />
-    
-
-    
-
-</div>
-
-        
-        <!-- Date and Author -->
-<p class="blog-post-meta">
-    2020-08-19
-    
-</p>
-
-<div class="blog-post">
-    <!-- Title -->
-    <!--
-    <h3 class="blog-post-title-archive">
-        <a href="/blog/title/">
-            Hello World
-        </a>
-    </h3>
-  -->
-    
-      <h3 class="blog-post-title-archive">
-        <a href="/blog/title/">Hello World</a>
-      </h3>
-    
-
-
-    <hr />
-    
-
-    
-
-</div>
-
-        
-        
-
-    </div>
-</div>
-
   </div>
-  <!-- Footer -->
-  <div id="footer">
-  <div id="footer-social">
-    
-    
-    
-    
-    
-    
-</div>
+</section>
+  
+</main>
 
-  <p id="footer-info">
-    &copy; 2020 John Doe<br>
-    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -
-    Theme <a href="https://github.com/Suolawangzai/hexo-theme-nebula" target="_blank">nebula</a>
+<script>
+  (function () {
+    var url = 'https://ikm565.github.io/archives/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header');
+  })();
+</script>
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
   </p>
+</footer>
 
-  <div id="busuanzi">
-    <span id="busuanzi_container_site_pv">
-      &hearts;
-    Total visits: <span id="busuanzi_value_site_pv"></span>
-    </span>
-  </div>
-  <!--
-  <div id="footer-info">
-    &copy; 2020 John Doe<br>
-    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-  </div>
--->
-</div>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
 
-  <!-- After footer scripts -->
-  <!-- Disqus Comments -->
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/js/script.js"></script>
 
-<script src="/blog/js/main.js"></script>
-
-
-</body>
-
+  </body>
 </html>
