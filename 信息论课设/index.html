@@ -6,7 +6,7 @@
   <meta name="description" content="yanm1ng&#39;s blog">
   <meta name="keyword" content="hexo-theme, vuejs">
   
-    <link rel="shortcut icon" href="/css/images/logo.png">
+    <link rel="shortcut icon" href="/ikm565.github.io/css/images/logo.png">
   
   <title>
     
@@ -17,11 +17,11 @@
   <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
   <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
   
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/ikm565.github.io/css/style.css">
 
   
     
-<link rel="stylesheet" href="/css/plugins/gitment.css">
+<link rel="stylesheet" href="/ikm565.github.io/css/plugins/gitment.css">
 
   
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -29,12 +29,12 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
   
     
-<script src="/js/qrious.js"></script>
+<script src="/ikm565.github.io/js/qrious.js"></script>
 
   
   
     
-<script src="/js/gitment.js"></script>
+<script src="/ikm565.github.io/js/gitment.js"></script>
 
   
   
@@ -72,7 +72,7 @@
   <body>
     <header class="header fixed-header">
   <div class="header-container">
-    <a class="home-link" href="/">
+    <a class="home-link" href="/ikm565.github.io/">
       <div class="logo"></div>
       <span>james ruslin's blog</span>
     </a>
@@ -80,31 +80,31 @@
       
         <li class="list-item">
           
-            <a href="/" class="item-link">Home</a>
+            <a href="/ikm565.github.io/" class="item-link">Home</a>
           
         </li>
       
         <li class="list-item">
           
-            <a href="/tags/" class="item-link">Tags</a>
+            <a href="/ikm565.github.io/tags/" class="item-link">Tags</a>
           
         </li>
       
         <li class="list-item">
           
-            <a href="/archives/" class="item-link">Archives</a>
+            <a href="/ikm565.github.io/archives/" class="item-link">Archives</a>
           
         </li>
       
         <li class="list-item">
           
-            <a href="/project/" class="item-link">Projects</a>
+            <a href="/ikm565.github.io/project/" class="item-link">Projects</a>
           
         </li>
       
         <li class="list-item">
           
-            <a href="/about/" class="item-link">About</a>
+            <a href="/ikm565.github.io/about/" class="item-link">About</a>
           
         </li>
       
@@ -119,31 +119,31 @@
         
           <li class="menu-item">
             
-              <a href="/" class="menu-link">Home</a>
+              <a href="/ikm565.github.io/" class="menu-link">Home</a>
             
           </li>
         
           <li class="menu-item">
             
-              <a href="/tags/" class="menu-link">Tags</a>
+              <a href="/ikm565.github.io/tags/" class="menu-link">Tags</a>
             
           </li>
         
           <li class="menu-item">
             
-              <a href="/archives/" class="menu-link">Archives</a>
+              <a href="/ikm565.github.io/archives/" class="menu-link">Archives</a>
             
           </li>
         
           <li class="menu-item">
             
-              <a href="/project/" class="menu-link">Projects</a>
+              <a href="/ikm565.github.io/project/" class="menu-link">Projects</a>
             
           </li>
         
           <li class="menu-item">
             
-              <a href="/about/" class="menu-link">About</a>
+              <a href="/ikm565.github.io/about/" class="menu-link">About</a>
             
           </li>
         
@@ -162,10 +162,10 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="信息论-哈夫曼编码-与-菲诺编码的实现（对一幅BMP格式的灰度图像（个人-证件照片）进行二元霍夫曼编码和译码。并进行编码效率的计算，对一幅BMP格式的灰度图像进行二-元Fano编码、译码-）"><a href="#信息论-哈夫曼编码-与-菲诺编码的实现（对一幅BMP格式的灰度图像（个人-证件照片）进行二元霍夫曼编码和译码。并进行编码效率的计算，对一幅BMP格式的灰度图像进行二-元Fano编码、译码-）" class="headerlink" title="信息论 哈夫曼编码 与 菲诺编码的实现（对一幅BMP格式的灰度图像（个人 证件照片）进行二元霍夫曼编码和译码。并进行编码效率的计算，对一幅BMP格式的灰度图像进行二 元Fano编码、译码  ）"></a>信息论 哈夫曼编码 与 菲诺编码的实现（对一幅BMP格式的灰度图像（个人 证件照片）进行二元霍夫曼编码和译码。并进行编码效率的计算，对一幅BMP格式的灰度图像进行二 元Fano编码、译码  ）</h1><p><img src="https://img-blog.csdnimg.cn/20200827154210383.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>原始图片</strong><br><img src="https://img-blog.csdnimg.cn/2020082715433292.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+    <section class="markdown-content"><h1 id="信息论-哈夫曼编码-与-菲诺编码的实现（对一幅BMP格式的灰度图像（个人-证件照片）进行二元霍夫曼编码和译码。并进行编码效率的计算，对一幅BMP格式的灰度图像进行二-元Fano编码、译码-）"><a href="#信息论-哈夫曼编码-与-菲诺编码的实现（对一幅BMP格式的灰度图像（个人-证件照片）进行二元霍夫曼编码和译码。并进行编码效率的计算，对一幅BMP格式的灰度图像进行二-元Fano编码、译码-）" class="headerlink" title="信息论 哈夫曼编码 与 菲诺编码的实现（对一幅BMP格式的灰度图像（个人 证件照片）进行二元霍夫曼编码和译码。并进行编码效率的计算，对一幅BMP格式的灰度图像进行二 元Fano编码、译码  ）"></a>信息论 哈夫曼编码 与 菲诺编码的实现（对一幅BMP格式的灰度图像（个人 证件照片）进行二元霍夫曼编码和译码。并进行编码效率的计算，对一幅BMP格式的灰度图像进行二 元Fano编码、译码  ）</h1><p><strong>原始图片</strong><br><img src="https://img-blog.csdnimg.cn/2020082715433292.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <p><strong>灰度处理</strong><br><img src="https://img-blog.csdnimg.cn/20200827154331810.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>编码生成的码表：noldList:</strong><br><img src="https://img-blog.csdnimg.cn/20200827154331658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <p><strong>解码后图片</strong><br><img src="https://img-blog.csdnimg.cn/20200827154331737.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p><strong>编码结果</strong><br><img src="https://img-blog.csdnimg.cn/2020082715451547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>fano编码实现</strong><br><img src="https://img-blog.csdnimg.cn/20200827154623534.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><strong>编码结果</strong><br><img src="https://img-blog.csdnimg.cn/2020082715451547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>fano编码实现</strong></p>
 <p><img src="https://img-blog.csdnimg.cn/20200827154647901.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="源码："><a href="#源码：" class="headerlink" title="源码："></a>源码：</h2><p><strong>哈夫曼编码实现</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line">#Writen by james ruslin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import json</span><br><span class="line">from math import log</span><br><span class="line">from tkinter import *</span><br><span class="line">from PIL import Image</span><br><span class="line">pixelFrequen &#x3D; &#123;&#125; #全局 字典</span><br><span class="line">nodeList &#x3D; []</span><br><span class="line">codeList &#x3D; &#123;&#125;</span><br><span class="line">E1 &#x3D; NONE</span><br><span class="line">E2 &#x3D; NONE</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class node:</span><br><span class="line">    def __init__(self, leftChild&#x3D;None, rightChild&#x3D;None, father&#x3D;None, value&#x3D;0, count&#x3D;None):</span><br><span class="line">        self.leftChild &#x3D; leftChild</span><br><span class="line">        self.rightChild &#x3D; rightChild</span><br><span class="line">        self.father &#x3D; father</span><br><span class="line">        self.value &#x3D; value</span><br><span class="line">        self.count &#x3D; count</span><br><span class="line"></span><br><span class="line">def calculater(p):</span><br><span class="line">    return -log(p, 2)*p</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def efficient(image):</span><br><span class="line">    row &#x3D; image.size[0]</span><br><span class="line">    col &#x3D; image.size[1]</span><br><span class="line">    allnumber &#x3D; row*col</span><br><span class="line">    h &#x3D; 0</span><br><span class="line">    for key in pixelFrequen.keys():</span><br><span class="line">        h +&#x3D; calculater(pixelFrequen[key] &#x2F; allnumber)</span><br><span class="line">    L &#x3D; 0</span><br><span class="line">    for key in pixelFrequen.keys():</span><br><span class="line">        L +&#x3D; len(codeList[str(key)]) * pixelFrequen[key] &#x2F; allnumber</span><br><span class="line">    R &#x3D; h&#x2F;L</span><br><span class="line">    return R</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def toGray(string):</span><br><span class="line">    im &#x3D; Image.open(string)</span><br><span class="line">    im &#x3D; im.convert(&#39;L&#39;)</span><br><span class="line">    im.save(&#39;C:&#x2F;Users&#x2F;user&#x2F;Desktop&#x2F;newGray.bmp&#39;)</span><br><span class="line">    return im       #返回图片‘对象’</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def counter(list):</span><br><span class="line">    global pixelFrequen</span><br><span class="line">    for i in list:</span><br><span class="line">        if i in pixelFrequen.keys():</span><br><span class="line">            pixelFrequen[i] +&#x3D; 1</span><br><span class="line">        else:</span><br><span class="line">            pixelFrequen[i] &#x3D; 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def leafNodes(pixelValue): #通过组合数组，构造叶子</span><br><span class="line">    for i in range(len(pixelValue)):</span><br><span class="line">        nodeList.append(node(value&#x3D;pixelValue[i][1], count&#x3D;str(pixelValue[i][0])))</span><br><span class="line"></span><br><span class="line">    return nodeList</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def sortNodes(nodeList):</span><br><span class="line">    nodeList &#x3D; sorted(nodeList, key&#x3D;lambda node: node.value) #按照node.value对node排序</span><br><span class="line">    return nodeList</span><br><span class="line"></span><br><span class="line">def huffmanTree(nodeList):</span><br><span class="line">    nodeList &#x3D; sortNodes(nodeList)</span><br><span class="line">    while len(nodeList) !&#x3D; 1:</span><br><span class="line">        left &#x3D; nodeList[0]</span><br><span class="line">        right &#x3D; nodeList[1]</span><br><span class="line">        new &#x3D; node()</span><br><span class="line">        new.leftChild &#x3D; left</span><br><span class="line">        new.rightChild &#x3D; right</span><br><span class="line">        left.father &#x3D; new</span><br><span class="line">        right.father &#x3D; new</span><br><span class="line">        new.value &#x3D; left.value + right.value</span><br><span class="line">        nodeList.remove(left)</span><br><span class="line">        nodeList.remove(right)</span><br><span class="line">        nodeList.append(new)</span><br><span class="line">        nodeList &#x3D; sortNodes(nodeList)</span><br><span class="line">    return nodeList</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def huffmanCoder(image):</span><br><span class="line">    width &#x3D; image.size[0]</span><br><span class="line">    height &#x3D; image.size[1]</span><br><span class="line">    imMatrix &#x3D; image.load()</span><br><span class="line">    list &#x3D; []</span><br><span class="line">    for i in range(width):</span><br><span class="line">        for j in range(height):</span><br><span class="line">            list.append(imMatrix[i, j])</span><br><span class="line"></span><br><span class="line">    counter(list)</span><br><span class="line">    global pixelFrequen</span><br><span class="line">    pixel &#x3D; pixelFrequen</span><br><span class="line">    pixel &#x3D; sorted(pixel.items(), key&#x3D;lambda item: item[1])  #以列表返回可遍历的(键, 值) 元组数组。</span><br><span class="line">    leafList &#x3D; leafNodes(pixel)</span><br><span class="line">    head &#x3D; huffmanTree(leafList)[0]  #leafList里的结点相互连接，形成树</span><br><span class="line">    global codeList</span><br><span class="line">    for i in leafList:</span><br><span class="line">        codingNode &#x3D; i</span><br><span class="line">        codeList.setdefault(i.count, &quot;&quot;)</span><br><span class="line">        while codingNode !&#x3D; head:</span><br><span class="line">            if codingNode &#x3D;&#x3D; codingNode.father.leftChild:</span><br><span class="line">                codeList[i.count] &#x3D; &#39;0&#39; + codeList[i.count]</span><br><span class="line">            else:</span><br><span class="line">                codeList[i.count] &#x3D; &#39;1&#39; + codeList[i.count]</span><br><span class="line">            codingNode &#x3D; codingNode.father</span><br><span class="line">    result &#x3D; &#39;&#39;</span><br><span class="line">    for i in range(width):</span><br><span class="line">        for j in range(height):</span><br><span class="line">            for key, value in codeList.items():</span><br><span class="line">                if str(imMatrix[i, j]) &#x3D;&#x3D; key:</span><br><span class="line">                    result &#x3D; result + value</span><br><span class="line"></span><br><span class="line">    file &#x3D; open(&#39;C:&#x2F;Users&#x2F;user&#x2F;Desktop&#x2F;result.txt&#39;, &#39;w&#39;)</span><br><span class="line">    file.write(result)</span><br><span class="line">    file1 &#x3D; open(&#39;C:&#x2F;Users&#x2F;user&#x2F;Desktop&#x2F;codeList.json&#39;, &#39;w&#39;)</span><br><span class="line">    jsObj &#x3D; json.dumps(codeList)</span><br><span class="line">    file1.write(jsObj)</span><br><span class="line">    print(&quot;编码结果已写入文件&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def decode(width, height):</span><br><span class="line">    file &#x3D; open(&#39;C:&#x2F;Users&#x2F;user&#x2F;Desktop&#x2F;result.txt&#39;, &#39;r&#39;)</span><br><span class="line">    codeGet &#x3D; file.readlines()[0].strip(&#39;\n&#39;)</span><br><span class="line">    len &#x3D; codeGet.__len__()</span><br><span class="line">    pixelReturn &#x3D; []</span><br><span class="line">    global codeList</span><br><span class="line"></span><br><span class="line">    i &#x3D; 0</span><br><span class="line">    current &#x3D; &quot;&quot;</span><br><span class="line">    current +&#x3D; codeGet[0]</span><br><span class="line">    flag &#x3D; 0</span><br><span class="line">    while i &lt; len:</span><br><span class="line">        for key in codeList.keys():</span><br><span class="line">            if current &#x3D;&#x3D; codeList[key]:</span><br><span class="line">                pixelReturn.append(key)</span><br><span class="line">                flag &#x3D; 1</span><br><span class="line">                break</span><br><span class="line">        if flag &#x3D;&#x3D; 1:</span><br><span class="line">            if i &#x3D;&#x3D; len - 1:</span><br><span class="line">                break</span><br><span class="line">            else:</span><br><span class="line">                i &#x3D; i + 1</span><br><span class="line">                current &#x3D; codeGet[i]</span><br><span class="line">                flag &#x3D; 0</span><br><span class="line">        else:</span><br><span class="line">            i +&#x3D; 1</span><br><span class="line">            if i &lt; len:</span><br><span class="line">                current +&#x3D; codeGet[i]</span><br><span class="line">            else:</span><br><span class="line">                break</span><br><span class="line"></span><br><span class="line">    c &#x3D; Image.new(&#39;L&#39;, (width, height))</span><br><span class="line">    t &#x3D; 0</span><br><span class="line">    for i in range(width):</span><br><span class="line">        for j in range(height):</span><br><span class="line">            c.putpixel((i, j), (int(pixelReturn[t])))</span><br><span class="line">            t &#x3D; t + 1</span><br><span class="line">    c.save(&#39;C:&#x2F;Users&#x2F;user&#x2F;Desktop&#x2F;ReturnedHuffman.bmp&#39;)</span><br><span class="line"></span><br><span class="line">def core():</span><br><span class="line">    global E1</span><br><span class="line">    global E2</span><br><span class="line">    root &#x3D; Tk(className&#x3D;&#39;刘畅2017212184&#39;)</span><br><span class="line">    root.geometry(&quot;600x600+100+0&quot;)  # 800宽度，800高度，x,y坐标，左上角</span><br><span class="line">    label &#x3D; Label(root)</span><br><span class="line">    label[&#39;text&#39;] &#x3D; &#39;二元huffman编码&#39;</span><br><span class="line">    label.pack()</span><br><span class="line">    L1 &#x3D; Label(root, text&#x3D;&quot;图像文件的位置:&quot;)</span><br><span class="line">    L1.place(x&#x3D;130, y&#x3D;100, width&#x3D;100, height&#x3D;50)</span><br><span class="line">    E1 &#x3D; Entry(root, bd&#x3D;5)</span><br><span class="line">    E1.place(x&#x3D;270, y&#x3D;100, width&#x3D;300, height&#x3D;40)</span><br><span class="line"></span><br><span class="line">    L2 &#x3D; Label(root, text&#x3D;&quot;编码效率为:&quot;)</span><br><span class="line">    L2.place(x&#x3D;130, y&#x3D;200, width&#x3D;100, height&#x3D;50)</span><br><span class="line">    E2 &#x3D; Text(root)</span><br><span class="line">    E2.place(x&#x3D;270, y&#x3D;200, width&#x3D;150, height&#x3D;40)</span><br><span class="line"></span><br><span class="line">    button &#x3D; Button(root, text&#x3D;&#39;开始编码&#39;, command&#x3D;main)</span><br><span class="line">    # 收到消息执行go函数</span><br><span class="line">    button.place(x&#x3D;250, y&#x3D;400, width&#x3D;70, height&#x3D;50)</span><br><span class="line">    root.mainloop()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">        global E1</span><br><span class="line">        global E2</span><br><span class="line">        string &#x3D; E1.get()</span><br><span class="line">        print(string)</span><br><span class="line">        image &#x3D; toGray(string)</span><br><span class="line">        huffmanCoder(image)</span><br><span class="line">        row &#x3D; image.size[0]</span><br><span class="line">        col &#x3D; image.size[1]</span><br><span class="line"></span><br><span class="line">        decode(image.size[0], image.size[1])</span><br><span class="line">        e &#x3D; efficient(image)</span><br><span class="line">        E2.insert(INSERT, str(e))</span><br><span class="line">core()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -183,7 +183,7 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/pytorch-%E6%95%99%E7%A8%8B/">
+      <a class="nav-left" href="/ikm565.github.io/pytorch-%E6%95%99%E7%A8%8B/">
         <span class="nav-arrow">← </span>
         
           2020最新windows10/anaconda/pytorch-gpu环境配置（附CUDA/cuDNN配置）
@@ -191,7 +191,7 @@
       </a>
     
     
-      <a class="nav-right" href="/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+      <a class="nav-right" href="/ikm565.github.io/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
         
           教你如何使用hexo以及nginx、github搭建属于自己的博客（妈妈级教学）
         
@@ -252,7 +252,7 @@
 
 <script>
   (function () {
-    var url = '182.92.88.231/信息论课设/';
+    var url = 'https://github.com/ikm565/ikm565.github.io/ikm565.github.io/信息论课设/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -348,7 +348,7 @@
   <p class="copyright">
     &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
-    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
   </p>
 </footer>
 
@@ -390,7 +390,7 @@
 <!-- Baidu Tongji -->
 
 
-<script src="/js/script.js"></script>
+<script src="/ikm565.github.io/js/script.js"></script>
 
   </body>
 </html>
