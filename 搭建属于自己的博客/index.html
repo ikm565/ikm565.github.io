@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      教你如何使用hexo以及nginx、github搭建属于自己的博客（妈妈级教学） | james ruslin&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+    
+<script src="/js/gitment.js"></script>
+
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 5.0.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>james ruslin's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>教你如何使用hexo以及nginx、github搭建属于自己的博客（妈妈级教学）</h2>
+  <p class="post-date">2020-08-27</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="教你如何使用hexo以及nginx、github搭建属于自己的博客（妈妈级教学）"><a href="#教你如何使用hexo以及nginx、github搭建属于自己的博客（妈妈级教学）" class="headerlink" title="教你如何使用hexo以及nginx、github搭建属于自己的博客（妈妈级教学）"></a>教你如何使用hexo以及nginx、github搭建属于自己的博客（妈妈级教学）</h2><p>~~</p>
+<h2 id="1-解释一下你要的服务器的效果以及对应的操作"><a href="#1-解释一下你要的服务器的效果以及对应的操作" class="headerlink" title="1.解释一下你要的服务器的效果以及对应的操作"></a>1.解释一下你要的服务器的效果以及对应的操作</h2><p>~~<br>首先你要有自己的一台服务器，可以是云服务器，或者你可以用自己的电脑作为服务器，（<strong>windows也可以的</strong>）<br><strong>（1）你有自己的windows(或者linux)</strong><br>安装hexo以及nodejs即可实现在github上可以访问的远程管理的blog<br><strong>（2）你有租了服务器</strong><br>安装hexo以及Nodejs,你可以在服务器上创建博客 的同时再将blog远程传到github的blog仓库，这样你就有两个平台.</p>
+<h2 id="2-我的平台情况，以及我对你的建议（妈妈级教学，认真看一下你是可以完成自己对应情况的）"><a href="#2-我的平台情况，以及我对你的建议（妈妈级教学，认真看一下你是可以完成自己对应情况的）" class="headerlink" title="2.我的平台情况，以及我对你的建议（妈妈级教学，认真看一下你是可以完成自己对应情况的）"></a>2.我的平台情况，以及我对你的建议（妈妈级教学，认真看一下你是可以完成自己对应情况的）</h2><p>ubuntu18.04服务器，github平台<br>所以我有两种方式访问我的blog:<br><strong>(1)github 仓库</strong><br><img src="https://img-blog.csdnimg.cn/20200827172202841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>（2）服务器访问（nginx挂载）：<br>如果不用服务器，就不需要考虑nginx的事情</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20200827172427814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><strong>（1）你不搞服务器，那就直接在你的pc上做下面相同的操作，与nginx相关的都不用管<br>（2）你搞服务器，那你跟着来，如果你不是ubuntu，是其他的服务器类型，你只需要 去百度一下做相同操作的指令就可（如果你是大佬，请你忽略我说的话），不要太懒</strong></p>
+<h2 id="3-安装nodejs-hexo"><a href="#3-安装nodejs-hexo" class="headerlink" title="3.安装nodejs,hexo"></a>3.安装nodejs,hexo</h2><p>windows的话，就搜一下怎么安装nodejs和hexo就行</p>
+<p>ubuntu指令如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--- #安装Nodejs</span><br><span class="line">node -v #查看node版本</span><br><span class="line">npm -v #查看npm版本</span><br><span class="line">npm install -g cnpm --registry&#x3D;http:&#x2F;&#x2F;registry.npm.taobao.org #安装淘宝的cnpm 管理器</span><br><span class="line">cnpm -v #查看cnpm版本</span><br><span class="line">cnpm install -g hexo-cli #安装hexo框架</span><br><span class="line">hexo -v #查看hexo版本</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-创建blog"><a href="#4-创建blog" class="headerlink" title="4.创建blog"></a>4.创建blog</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">记得ubuntu的nginx是默认挂载&#96;&#x2F;var&#x2F;www&#x2F;html&#96;目录的，</span><br></pre></td></tr></table></figure>
+<p>你可以在任意目录创建自己的blog目录，我是在<code>/var/www/</code>目录创建的一个目录叫hexo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;var&#x2F;www</span><br><span class="line">mkdir hexo</span><br><span class="line">cd hexo</span><br><span class="line">sudo hexo init #生成博客 初始化博客</span><br><span class="line">hexo s #启动本地博客服务</span><br><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F; #本地访问地址</span><br></pre></td></tr></table></figure>
+<p><strong>这些是初始化hexo生成的目录，待会儿会解释你需要哪些</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20200827173941133.png#pic_center" alt="在这里插入图片描述"></p>
+<p>你可以访问<a target="_blank" rel="noopener" href="http://localhost:4000/%E7%9C%8B%E5%88%B0%E4%B8%80%E4%B8%AA%E5%9F%BA%E6%9C%AC%E7%9A%84hexoblog%E6%A8%A1%E5%9E%8B">http://localhost:4000/看到一个基本的hexoblog模型</a></p>
+<h2 id="5-写blog"><a href="#5-写blog" class="headerlink" title="5.写blog"></a>5.写blog</h2><p><strong>（1）你可以使用CSDN的markdown编辑器进行编辑，导出md文件，然后再传到ubuntu上，<br>（2）或者你也可以直接使用markdown语法进行编写，具体的语法你需要自己去学</strong><br>我给一个md文件的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: test2</span><br><span class="line">date: 2020-08-27 16:39:26</span><br><span class="line">tags:</span><br><span class="line">---</span><br><span class="line">**this is a test2**</span><br></pre></td></tr></table></figure>
+<p><strong>其中**</strong>表示的是加粗，类似这样，最终将文件保存为md文件，可以直接导入各个平台写文章**<br><strong>我这里教你怎么用md文件，如果你想直接用hexo使用markdown语法写，我举个例子如下：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;我的文章&quot; #创建新的文章</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>之后hexo会在public/_posts目录下自动生成我的文章.md文件，这跟你把md文件直接复制到public/_posts是一样的。都是要对md文件进行编辑</strong><br><img src="https://img-blog.csdnimg.cn/20200827182720365.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="6-生成blog"><a href="#6-生成blog" class="headerlink" title="6.生成blog"></a>6.生成blog</h2><p>当/var/www/hexo/public/_posts文件夹中有md文件时，你可以通过以下命令生成blog：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#返回hexo目录</span><br><span class="line">hexo clean #清理</span><br><span class="line">hexo g #生成</span><br><span class="line">hexo s #预览，你可以在这里预览自己的blog生成情况</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-配置github"><a href="#7-配置github" class="headerlink" title="7.配置github"></a>7.配置github</h2><p><strong>#Github创建一个新的仓库 ‘你的github名字.github.io’</strong><br><img src="https://img-blog.csdnimg.cn/20200827183220632.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200827183247590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>然后</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git #在blog目录下安装git部署插件</span><br></pre></td></tr></table></figure>
+<p>我这里的blog目录就是/var/www/hexo，你的是你自己指定的目录</p>
+<h2 id="然后配置-config-yml"><a href="#然后配置-config-yml" class="headerlink" title="然后配置_config.yml"></a>然后配置_config.yml</h2><p><img src="https://img-blog.csdnimg.cn/20200827183453787.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>.<br>.<br>.<br>打开编辑_config.yml<br>对于deploy字段，修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-----</span><br><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: https:&#x2F;&#x2F;github.com&#x2F;你的github名字&#x2F;你的github名字.github.io.git</span><br><span class="line">branch: master</span><br><span class="line">-----</span><br></pre></td></tr></table></figure>
+
+<p>完成保存<br>使用命令<code>hexo deploy</code>部署blog到你的github项目<br>https://你的github名字.github.io/ #访问这个地址可以查看博客</p>
+<h2 id="重点来了（踩坑教学）"><a href="#重点来了（踩坑教学）" class="headerlink" title="重点来了（踩坑教学）"></a>重点来了（踩坑教学）</h2><p>修改_config.yml注意两点，要想你的blog兼容各种主题以及不会出现两篇文章跳转到同一个目录的情况，注意以下：<br><strong>（1）url以及root的配置</strong><br><img src="https://img-blog.csdnimg.cn/20200827184154348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>url设置为github给你分配的访问域名，就是你的github主页地址<br>root设置为你的仓库名称（刚才设置的是 <strong>‘你的github名字.github.io’</strong>）<br>只有这样，你的blog才会正确的展现</p>
+<p><strong>（2）permalink的配置</strong><br><img src="https://img-blog.csdnimg.cn/2020082718450323.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这个是标记你的每一篇博客，即每个md文件 生成的链接，这里我是用title作为链接，你可以用其他的，比如日期 <strong>，但是一定要记住，在最前面加上一个“：”</strong> </p>
+<h2 id="比如permalink-：title-而不是permalink-title"><a href="#比如permalink-：title-而不是permalink-title" class="headerlink" title="比如permalink: ：title/ 而不是permalink: title/"></a>比如permalink: ：title/ 而不是permalink: title/</h2><p>不然你的blog会全部跳转到/title目录下</p>
+<p>至此，你的github链的blog就完成了<br>.<br>.</p>
+<h2 id="8-nginx服务器配置blog渲染hexo"><a href="#8-nginx服务器配置blog渲染hexo" class="headerlink" title="8.nginx服务器配置blog渲染hexo"></a>8.nginx服务器配置blog渲染hexo</h2><p>这里就是开始你的服务器作为blog的载体的情况，<br>首先，修改nginx的配置文件<br><img src="https://img-blog.csdnimg.cn/20200827185007393.png#pic_center" alt="在这里插入图片描述"><br>首先，在conf.d文件目录中创建新文件：default.conf,内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">          # 监听端口</span><br><span class="line">            listen 80;</span><br><span class="line">            # 监听ip 换成服务器公网IP</span><br><span class="line">            # server_name mr-lin.site;</span><br><span class="line">            location &#x2F; &#123;</span><br><span class="line">              root &#x2F;var&#x2F;www&#x2F;hexo&#x2F;public;</span><br><span class="line">              index index.html;</span><br><span class="line">          &#125;</span><br><span class="line">            location ~ .* &#123;</span><br><span class="line">                        #proxy_pass http:&#x2F;&#x2F;xd-project;</span><br><span class="line">                        proxy_set_header Host $http_host;</span><br><span class="line">                        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200827185111535.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>好的，这样就可以了，记得，<strong>其中的root改为你的blog地址/public才可以，我这里的blog地址是/var/www/hexo，明白？</strong></p>
+<h2 id="然后重启nginx服务，就可以通过公网ip或者域名访问你的服务器80端口来访问blog了。"><a href="#然后重启nginx服务，就可以通过公网ip或者域名访问你的服务器80端口来访问blog了。" class="headerlink" title="然后重启nginx服务，就可以通过公网ip或者域名访问你的服务器80端口来访问blog了。"></a>然后重启nginx服务，就可以通过公网ip或者域名访问你的服务器80端口来访问blog了。</h2></section>
+    <!-- Tags START -->
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/%E4%BF%A1%E6%81%AF%E8%AE%BA%E8%AF%BE%E8%AE%BE/">
+        <span class="nav-arrow">← </span>
+        
+          信息论 哈夫曼编码 与 菲诺编码的实现（对一幅BMP格式的灰度图像（个人 证件照片）进行二元霍夫曼编码和译码。并进行编码效率的计算，对一幅BMP格式的灰度图像进行二 元Fano编码、译码  ）
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo%E4%BB%A5%E5%8F%8Anginx%E3%80%81github%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%A6%88%E5%A6%88%E7%BA%A7%E6%95%99%E5%AD%A6%EF%BC%89"><span class="toc-nav-text">教你如何使用hexo以及nginx、github搭建属于自己的博客（妈妈级教学）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E4%BD%A0%E8%A6%81%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%95%88%E6%9E%9C%E4%BB%A5%E5%8F%8A%E5%AF%B9%E5%BA%94%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-nav-text">1.解释一下你要的服务器的效果以及对应的操作</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-%E6%88%91%E7%9A%84%E5%B9%B3%E5%8F%B0%E6%83%85%E5%86%B5%EF%BC%8C%E4%BB%A5%E5%8F%8A%E6%88%91%E5%AF%B9%E4%BD%A0%E7%9A%84%E5%BB%BA%E8%AE%AE%EF%BC%88%E5%A6%88%E5%A6%88%E7%BA%A7%E6%95%99%E5%AD%A6%EF%BC%8C%E8%AE%A4%E7%9C%9F%E7%9C%8B%E4%B8%80%E4%B8%8B%E4%BD%A0%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%AE%8C%E6%88%90%E8%87%AA%E5%B7%B1%E5%AF%B9%E5%BA%94%E6%83%85%E5%86%B5%E7%9A%84%EF%BC%89"><span class="toc-nav-text">2.我的平台情况，以及我对你的建议（妈妈级教学，认真看一下你是可以完成自己对应情况的）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-%E5%AE%89%E8%A3%85nodejs-hexo"><span class="toc-nav-text">3.安装nodejs,hexo</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4-%E5%88%9B%E5%BB%BAblog"><span class="toc-nav-text">4.创建blog</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#5-%E5%86%99blog"><span class="toc-nav-text">5.写blog</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#6-%E7%94%9F%E6%88%90blog"><span class="toc-nav-text">6.生成blog</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#7-%E9%85%8D%E7%BD%AEgithub"><span class="toc-nav-text">7.配置github</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%84%B6%E5%90%8E%E9%85%8D%E7%BD%AE-config-yml"><span class="toc-nav-text">然后配置_config.yml</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%87%8D%E7%82%B9%E6%9D%A5%E4%BA%86%EF%BC%88%E8%B8%A9%E5%9D%91%E6%95%99%E5%AD%A6%EF%BC%89"><span class="toc-nav-text">重点来了（踩坑教学）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%AF%94%E5%A6%82permalink-%EF%BC%9Atitle-%E8%80%8C%E4%B8%8D%E6%98%AFpermalink-title"><span class="toc-nav-text">比如permalink: ：title&#x2F; 而不是permalink: title&#x2F;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#8-nginx%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AEblog%E6%B8%B2%E6%9F%93hexo"><span class="toc-nav-text">8.nginx服务器配置blog渲染hexo</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%84%B6%E5%90%8E%E9%87%8D%E5%90%AFnginx%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E5%85%AC%E7%BD%91ip%E6%88%96%E8%80%85%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE%E4%BD%A0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A880%E7%AB%AF%E5%8F%A3%E6%9D%A5%E8%AE%BF%E9%97%AEblog%E4%BA%86%E3%80%82"><span class="toc-nav-text">然后重启nginx服务，就可以通过公网ip或者域名访问你的服务器80端口来访问blog了。</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = '182.92.88.231/搭建属于自己的博客/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+  <script>
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "教你如何使用hexo以及nginx、github搭建属于自己的博客（妈妈级教学）",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
