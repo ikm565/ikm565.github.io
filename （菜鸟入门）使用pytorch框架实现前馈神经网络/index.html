@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="james&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      （菜鸟入门）使用pytorch框架实现前馈神经网络 | james ruslin&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+    
+<script src="/js/gitment.js"></script>
+
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 5.0.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>james ruslin's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>（菜鸟入门）使用pytorch框架实现前馈神经网络</h2>
+  <p class="post-date">2020-08-28</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="前馈神经网络"><a href="#前馈神经网络" class="headerlink" title="前馈神经网络"></a>前馈神经网络</h2><p>常见的前馈神经网络有感知机（Perceptrons）、BP（Back Propagation）网络等。前馈神经网络(FNN)是人工智能领域中最早发明的简单人工神经网络类型。各神经元分层排列。每个神经元只与前一层的神经元相连。接收前一层的输出，并输出给下一层．各层间没有反馈。在它内部，参数从输入层经过隐含层向输出层单向传播。与递归神经网络不同，在它内部不会构成有向环。下图为一个简单前馈神经网络示意图：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200828172106771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>整个网络中无反馈，信号从输入层向输出层单向传播，可用一个有向无环图表示</p>
+<h2 id="感知器"><a href="#感知器" class="headerlink" title="感知器"></a>感知器</h2><p>感知器实际上是神经网络结构中的<strong>一个神经元</strong>，那么一个感知器就构成了最简单的神经网络。<br>感知器是前向结构的人工神经网络，可以被看作是一个有向图，由多个的节点层所组成，每一层都<strong>全连接</strong>到下一层。除了输入节点，每个节点都是一个带有非线性激活函数的神经元（或称处理单元）</p>
+<h2 id="实现前馈神经网络"><a href="#实现前馈神经网络" class="headerlink" title="实现前馈神经网络"></a>实现前馈神经网络</h2><p>之前的blog已经说过如何搭建windows系统的pytorch-gpu环境，我们使用pytorch来实现第一个前馈神经网络：<br><strong>源代码：</strong><br><strong>源码中我作了详细的注释，供参考</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torchvision.datasets as dsets #torchvision为一个做图形处理的库，加载数据集</span><br><span class="line">import torchvision.transforms as transforms</span><br><span class="line"></span><br><span class="line">&#39;&#39;&#39;</span><br><span class="line">torchvision.datasets这个包中包含MNIST、FakeData、COCO、LSUN、ImageFolder、DatasetFolder、ImageNet、CIFAR等一些常用的数据集，并且提供了数据集设置的一些重要参数设置，可以通过简单数据集设置来进行数据集的调用。从这些数据集中我们也可以看出数据集设置的主要变量有哪些并且有什么功能对将来自己数据集的设置也有极大的帮助。</span><br><span class="line">以上数据集的接口基本上很相近。它们至少包括两个公共的参数transform和target_transform，以便分别对输入和和目标做变换</span><br><span class="line">&#39;&#39;&#39;</span><br><span class="line">from torch.autograd import Variable</span><br><span class="line">#torch.autograd提供了类和函数用来对任意标量函数进行求导。</span><br><span class="line">import torch.utils.data as Data</span><br><span class="line">#我们需要使用torch.utils.data.DataLoader加载数据</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">#画图所需的库</span><br><span class="line"></span><br><span class="line"># Hyper Parameters 超参数(hyperparameters)&#x2F;算法参数 根据经验进行设定，影响到权重和偏置的大小，比如迭代次数、隐藏层的层数、每层神经元的个数、学习速率等</span><br><span class="line">input_size &#x3D; 784</span><br><span class="line">hidden_size &#x3D; 500</span><br><span class="line">num_classes &#x3D; 10</span><br><span class="line">num_epochs &#x3D; 5</span><br><span class="line">batch_size &#x3D; 100</span><br><span class="line">learning_rate &#x3D; 0.001</span><br><span class="line"></span><br><span class="line"># MNIST Dataset 数据集</span><br><span class="line">train_dataset &#x3D; dsets.MNIST(root&#x3D;&#39;.&#x2F;data&#39;, #指定数据集的目录</span><br><span class="line">                            train&#x3D;True, </span><br><span class="line">                            transform&#x3D;transforms.ToTensor(),  </span><br><span class="line"># transforms.ToTensor() 将numpy的ndarray或PIL.Image读的图片转换成形状为(C,H, W)的Tensor格式，且&#x2F;255归一化到[0,1.0]之间</span><br><span class="line">                            download&#x3D;True)</span><br><span class="line"></span><br><span class="line">test_dataset &#x3D; dsets.MNIST(root&#x3D;&#39;.&#x2F;data&#39;, </span><br><span class="line">                           train&#x3D;False, </span><br><span class="line">                           transform&#x3D;transforms.ToTensor())</span><br><span class="line"></span><br><span class="line"># Data Loader (Input Pipeline)</span><br><span class="line">train_loader &#x3D; torch.utils.data.DataLoader(dataset&#x3D;train_dataset, </span><br><span class="line">                                           batch_size&#x3D;batch_size, </span><br><span class="line">                                           shuffle&#x3D;True)</span><br><span class="line"></span><br><span class="line">test_loader &#x3D; torch.utils.data.DataLoader(dataset&#x3D;test_dataset, </span><br><span class="line">                                          batch_size&#x3D;batch_size, </span><br><span class="line">                                          shuffle&#x3D;False)</span><br><span class="line">&#39;&#39;&#39;</span><br><span class="line">dataset:加载数据的数据集</span><br><span class="line">batch_size：加载批训练的数据个数</span><br><span class="line">shuffle：在每个Epoch中打乱数据</span><br><span class="line">&#39;&#39;&#39;</span><br><span class="line">test_y&#x3D;test_dataset.test_labels</span><br><span class="line"></span><br><span class="line"># Neural Network Model (1 hidden layer)</span><br><span class="line">class Net(nn.Module):</span><br><span class="line">    #初始化网络结构</span><br><span class="line">    def __init__(self, input_size, hidden_size, num_classes):</span><br><span class="line">        super(Net, self).__init__()</span><br><span class="line">        self.fc1 &#x3D; nn.Linear(input_size, hidden_size) #输入层，线性（liner）关系</span><br><span class="line">        self.relu &#x3D; nn.ReLU()#隐藏层，使用ReLU函数</span><br><span class="line">        self.fc2 &#x3D; nn.Linear(hidden_size, num_classes)  #输出层，线性（liner）关系</span><br><span class="line">    #forword 参数传递函数，网络中数据的流动</span><br><span class="line">    def forward(self, x):</span><br><span class="line">        out &#x3D; self.fc1(x)</span><br><span class="line">        out &#x3D; self.relu(out)</span><br><span class="line">        out &#x3D; self.fc2(out)</span><br><span class="line">        return out</span><br><span class="line">    </span><br><span class="line">net &#x3D; Net(input_size, hidden_size, num_classes)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"># Loss and Optimizer</span><br><span class="line">criterion &#x3D; nn.CrossEntropyLoss()  #设置loss为最小二乘loss</span><br><span class="line">optimizer &#x3D; torch.optim.Adam(net.parameters(), lr&#x3D;learning_rate)  </span><br><span class="line">#设置优化器，torch.optim.Adam</span><br><span class="line"># Train the Model</span><br><span class="line">for epoch in range(num_epochs):</span><br><span class="line">    for i, (images, labels) in enumerate(train_loader):  </span><br><span class="line">        #enumrate</span><br><span class="line">        # Convert torch tensor to Variable</span><br><span class="line">        images &#x3D; Variable(images.view(-1, 28*28))#图片大小为28*28</span><br><span class="line">        labels &#x3D; Variable(labels)</span><br><span class="line">        #pytorch都是有tensor计算的，而tensor里面的参数都是Variable的形式</span><br><span class="line">        # Forward + Backward + Optimize</span><br><span class="line">        optimizer.zero_grad()  # zero the gradient buffer</span><br><span class="line">        outputs &#x3D; net(images)</span><br><span class="line">        loss &#x3D; criterion(outputs, labels)</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">        </span><br><span class="line">        if (i+1) % 100 &#x3D;&#x3D; 0:</span><br><span class="line">            print (&#39;Epoch [%d&#x2F;%d], Step [%d&#x2F;%d], Loss: %.4f&#39; </span><br><span class="line">                   %(epoch+1, num_epochs, i+1, len(train_dataset)&#x2F;&#x2F;batch_size, loss.item()))</span><br><span class="line">#每训练100个step输出一次结果</span><br><span class="line"># Test the Model</span><br><span class="line">correct &#x3D; 0</span><br><span class="line">total &#x3D; 0</span><br><span class="line">for images, labels in test_loader:</span><br><span class="line">    images &#x3D; Variable(images.view(-1, 28*28))</span><br><span class="line">    outputs &#x3D; net(images)</span><br><span class="line">    _, predicted &#x3D; torch.max(outputs.data, 1)</span><br><span class="line">    total +&#x3D; labels.size(0)#计算所有的label数量</span><br><span class="line">    correct +&#x3D; (predicted &#x3D;&#x3D; labels).sum()#计算预测对的label数量</span><br><span class="line"></span><br><span class="line">print(&#39;Accuracy of the network on the 10000 test images: %d %%&#39; % (100 * torch.true_divide(correct, total)))</span><br><span class="line"></span><br><span class="line"># Save the Model</span><br><span class="line">for i in range(1,4):</span><br><span class="line"></span><br><span class="line">    plt.imshow(train_dataset.train_data[i].numpy(), cmap&#x3D;&#39;gray&#39;)  </span><br><span class="line"></span><br><span class="line">    plt.title(&#39;%i&#39; % train_dataset.train_labels[i])  </span><br><span class="line"></span><br><span class="line">plt.show()  </span><br><span class="line">torch.save(net.state_dict(), &#39;model.pkl&#39;)</span><br><span class="line">#net.state_dict(),模型文件</span><br><span class="line">test_output &#x3D; net(images[:20])  </span><br><span class="line"></span><br><span class="line">pred_y &#x3D; torch.max(test_output, 1)[1].data.numpy().squeeze()  </span><br><span class="line"></span><br><span class="line">print(&#39;prediction number&#39;,pred_y)  </span><br><span class="line"></span><br><span class="line">print(&#39;real number&#39;,test_y[:20].numpy())  </span><br></pre></td></tr></table></figure>
+
+<h2 id="最小二乘Loss"><a href="#最小二乘Loss" class="headerlink" title="最小二乘Loss"></a>最小二乘Loss</h2><p>class torch.nn.CrossEntropyLoss(weight=None, size_average=True)[source]<br>此标准将LogSoftMax和NLLLoss集成到一个类中。</p>
+<p>当训练一个多类分类器的时候，这个方法是十分有用的。</p>
+<p>weight(tensor): 1-D tensor，n个元素，分别代表n类的权重，如果你的训练样本很不均衡的话，是非常有用的。默认值为None。<br>调用时参数：</p>
+<p>input : 包含每个类的得分，2-D tensor,shape为 batch*n</p>
+<p>target: 大小为 n 的 1—D tensor，包含类别的索引(0到 n-1)。</p>
+<p>Loss可以表述为以下形式：<br><img src="https://img-blog.csdnimg.cn/20200828215822426.png#pic_center" alt="在这里插入图片描述"></p>
+<p>当weight参数被指定的时候，loss的计算公式变为：<br><img src="https://img-blog.csdnimg.cn/20200828215800685.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="torch-optim-Adam"><a href="#torch-optim-Adam" class="headerlink" title="torch.optim.Adam"></a>torch.optim.Adam</h2><p>torch.optim是一个实现了各种优化算法的库。大部分常用的方法得到支持，并且接口具备足够的通用性，使得未来能够集成更加复杂的方法。<br>·<br>为了使用torch.optim，<strong>需要构建一个optimizer对象</strong>。这个对象能够保持当前参数状态并<strong>基于计算得到的梯度</strong>进行参数更新。<br>·<br>为了构建一个Optimizer，需要给它一个包含了需要优化的参数（<strong>必须都是Variable对象</strong>）的iterable。然后，你可以设置optimizer的参 数选项，比如学习率，权重衰减，等等。<br>·<br>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">optimizer &#x3D; optim.SGD(model.parameters(), lr &#x3D; 0.01, momentum&#x3D;0.9)</span><br><span class="line">optimizer &#x3D; optim.Adam([var1, var2], lr &#x3D; 0.0001)</span><br></pre></td></tr></table></figure>
+<p>·<br><strong>对于Adam</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class torch.optim.Adam(params, lr&#x3D;0.001, betas&#x3D;(0.9, 0.999), eps&#x3D;1e-08, weight_decay&#x3D;0)[source]</span><br></pre></td></tr></table></figure>
+<p>参数：</p>
+<ol>
+<li>params (iterable) – 待优化参数的iterable或者是定义了参数组的dict lr (float, 可选) –</li>
+<li>学习率（默认：1e-3） betas (Tuple[float, float], 可选) –</li>
+<li>用于计算梯度以及梯度平方的运行平均值的系数（默认：0.9，0.999） eps (float, 可选) –</li>
+<li>为了增加数值计算的稳定性而加到分母里的项（默认：1e-8） weight_decay (float, 可选) –<br>权重衰减（L2惩罚）（默认: 0）</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://pytorch-cn.readthedocs.io/zh/latest/package_references/torch-optim/">附上pytorch文档的解释</a></p>
+<h2 id="torch-max"><a href="#torch-max" class="headerlink" title="torch.max"></a>torch.max</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output &#x3D; torch.max(input, dim)</span><br></pre></td></tr></table></figure>
+
+<p><strong>1.输入</strong></p>
+<p>input是softmax函数输出的一个tensor<br>dim是max函数索引的维度0/1，0是每列的最大值，1是每行的最大值</p>
+<p> <strong>2. 输出</strong></p>
+<p>函数会返回两个tensor，第一个tensor是每行的最大值，softmax的输出中最大的是1，所以第一个tensor是全1的tensor；第二个tensor是每行最大值的索引。</p>
+<h2 id="torch-nn-state-dict"><a href="#torch-nn-state-dict" class="headerlink" title="torch.nn.state_dict()"></a>torch.nn.state_dict()</h2><p>pytorch 中的 state_dict 是一个简单的python的字典对象,将每一层与它的对应参数建立映射关系.(如model的每一层的weights及偏置等等)</p>
+<p>(注意,只有那些参数可以训练的layer才会被保存到模型的state_dict中,如卷积层,线性层等等)</p>
+<h2 id="squeeze函数"><a href="#squeeze函数" class="headerlink" title="squeeze函数"></a>squeeze函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x &#x3D; np.array([[[0], [1], [2]]])</span><br><span class="line">print(x)</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">x&#x3D;</span><br><span class="line"></span><br><span class="line">[[[0]</span><br><span class="line">  [1]</span><br><span class="line">  [2]]]</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">print(x.shape)  # (1, 3, 1)</span><br><span class="line"></span><br><span class="line">x1 &#x3D; np.squeeze(x)  # 从数组的形状中删除单维条目，即把shape中为1的维度去掉</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(x1)  # [0 1 2]</span><br><span class="line">print(x1.shape)  # (3,)</span><br></pre></td></tr></table></figure>
+
+</section>
+    <!-- Tags START -->
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+        <span class="nav-arrow">← </span>
+        
+          教你如何使用hexo以及nginx、github搭建属于自己的博客（妈妈级教学）
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = '182.92.88.231/（菜鸟入门）使用pytorch框架实现前馈神经网络/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+  <script>
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "（菜鸟入门）使用pytorch框架实现前馈神经网络",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
