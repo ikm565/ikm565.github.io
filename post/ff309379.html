@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="james&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      pytorch卷积层与池化层输出的尺寸的计算公式详解 | james ruslin&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+    
+<script src="/js/gitment.js"></script>
+
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 5.0.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>james ruslin's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>pytorch卷积层与池化层输出的尺寸的计算公式详解</h2>
+  <p class="post-date">2020-08-29</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="pytorch卷积层与池化层输出的尺寸的计算公式详解"><a href="#pytorch卷积层与池化层输出的尺寸的计算公式详解" class="headerlink" title="pytorch卷积层与池化层输出的尺寸的计算公式详解"></a>pytorch卷积层与池化层输出的尺寸的计算公式详解</h2><p>要设计卷积神经网络的结构，必须匹配层与层之间的输入与输出的尺寸，这就需要较好的计算输出尺寸</p>
+<h2 id="先列出公式："><a href="#先列出公式：" class="headerlink" title="先列出公式："></a>先列出公式：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">卷积后，池化后尺寸计算公式：</span><br><span class="line">(图像尺寸-卷积核尺寸 + 2*填充值)&#x2F;步长+1</span><br><span class="line">(图像尺寸-池化窗尺寸 + 2*填充值)&#x2F;步长+1</span><br></pre></td></tr></table></figure>
+<p>即：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">卷积神将网络的计算公式为：</span><br><span class="line">N&#x3D;(W-F+2P)&#x2F;S+1</span><br><span class="line">其中</span><br><span class="line">N：输出大小</span><br><span class="line">W：输入大小</span><br><span class="line">F：卷积核大小</span><br><span class="line">P：填充值的大小</span><br><span class="line">S：步长大小</span><br></pre></td></tr></table></figure>
+
+<h2 id="例Conv2d（后面给出实例来讲解计算方法）"><a href="#例Conv2d（后面给出实例来讲解计算方法）" class="headerlink" title="例Conv2d（后面给出实例来讲解计算方法）:"></a>例Conv2d（后面给出实例来讲解计算方法）:</h2><p><img src="https://img-blog.csdnimg.cn/20200829171943891.png#pic_center" alt="在这里插入图片描述"><br>`<br><img src="https://img-blog.csdnimg.cn/20200829172019675.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride&#x3D;1, padding&#x3D;0, dilation&#x3D;1, groups&#x3D;1, bias&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">卷积一层的几个参数:</span><br><span class="line">in_channels&#x3D;3:表示的是输入的通道数，RGB型的通道数是3.</span><br><span class="line">out_channels:表示的是输出的通道数，设定输出通道数（这个是可以根据自己的需要来设置的）</span><br><span class="line">kernel_size&#x3D;12:表示卷积核的大小是12x12的，也就是上面的 F&#x3D;12</span><br><span class="line">stride&#x3D;4:表示的是步长为4，也就是上面的S&#x3D;4</span><br><span class="line">padding&#x3D;2:表示的是填充值的大小为2，也就是上面的P&#x3D;2</span><br></pre></td></tr></table></figure>
+
+<h2 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h2><p>cove1d：用于文本数据，只对宽度进行卷积，对高度不进行卷积<br>cove2d：用于图像数据，对宽度和高度都进行卷积</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">from torch.autograd import Variable</span><br><span class="line">#torch.autograd提供了类和函数用来对任意标量函数进行求导。</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line">class MNISTConvNet(nn.Module):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super(MNISTConvNet, self).__init__()</span><br><span class="line">        &#39;&#39;&#39;</span><br><span class="line">这是对继承自父类的属性进行初始化。而且是用父类的初始化方法来初始化继承的属性。</span><br><span class="line">也就是说，子类继承了父类的所有属性和方法，父类属性自然会用父类方法来进行初始化。</span><br><span class="line">        &#39;&#39;&#39;</span><br><span class="line">#定义网络结构</span><br><span class="line">        self.conv1 &#x3D; nn.Conv2d(1, 10, 5)</span><br><span class="line">        self.pool1 &#x3D; nn.MaxPool2d(2, 2)</span><br><span class="line">        self.conv2 &#x3D; nn.Conv2d(10, 20, 5)</span><br><span class="line">        self.pool2 &#x3D; nn.MaxPool2d(2, 2)</span><br><span class="line">        self.fc1 &#x3D; nn.Linear(160, 50)</span><br><span class="line">        self.fc2 &#x3D; nn.Linear(50, 10)</span><br><span class="line">    def forward(self, input):</span><br><span class="line">        x &#x3D; self.pool1(F.relu(self.conv1(input)))</span><br><span class="line">        x &#x3D; self.pool2(F.relu(self.conv2(x)))</span><br><span class="line">        x &#x3D; self.fc2(self.fc1(x))</span><br><span class="line">        return x</span><br><span class="line"></span><br><span class="line">net &#x3D; MNISTConvNet()</span><br><span class="line">print(net)</span><br><span class="line">input &#x3D; Variable(torch.randn(1, 1, 28, 28))</span><br><span class="line">out &#x3D; net(input)</span><br><span class="line">print(out.size())</span><br></pre></td></tr></table></figure>
+<p><strong>我们在这个实例中抽出网络结构部分：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    self.conv1 &#x3D; nn.Conv2d(1, 10, 5)</span><br><span class="line">    self.pool1 &#x3D; nn.MaxPool2d(2, 2)</span><br><span class="line">    self.conv2 &#x3D; nn.Conv2d(10, 20, 5)</span><br><span class="line">    self.pool2 &#x3D; nn.MaxPool2d(2, 2)</span><br><span class="line">    self.fc1 &#x3D; nn.Linear(160, 50)</span><br><span class="line">    self.fc2 &#x3D; nn.Linear(50, 10)</span><br><span class="line">def forward(self, input):</span><br><span class="line">    x &#x3D; self.pool1(F.relu(self.conv1(input)))</span><br><span class="line">    x &#x3D; self.pool2(F.relu(self.conv2(x)))</span><br><span class="line">    x &#x3D; self.fc2(self.fc1(x))</span><br></pre></td></tr></table></figure>
+<p>网络结构为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conv2d--maxpool2d--conv2d--maxpool2d--fullyconnect--fullyconnect</span><br></pre></td></tr></table></figure>
+<p>输入图片大小为：input = Variable(torch.randn(1, 1, 28, 28))<br>即*<em>28</em>28的单通道*<em>图片，即：1</em>28*28</p>
+<h2 id="接下来，我们分层解析每一层网络的输入和输出："><a href="#接下来，我们分层解析每一层网络的输入和输出：" class="headerlink" title="接下来，我们分层解析每一层网络的输入和输出："></a>接下来，我们分层解析每一层网络的输入和输出：</h2><p><strong>（1）conv2d(1,10,5)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">N：输出大小</span><br><span class="line">W：输入大小    28*28</span><br><span class="line">F：卷积核大小    5*5</span><br><span class="line">P：填充值的大小    0默认值</span><br><span class="line">S：步长大小    1默认值</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">N&#x3D;(W-F+2P)&#x2F;S+1&#x3D;(28-5 + 2*0)&#x2F;1 + 1 &#x3D; 24</span><br><span class="line">输出为：10*24*24</span><br></pre></td></tr></table></figure>
+<p>Conv2d(输入通道数, 输出通道数, kernel_size（长和宽）)，当卷积核为方形时，只写一个就可以，<strong>卷积核不是方形时，长和宽都要写</strong>，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.conv1 &#x3D; nn.Conv2d(2, 4, （5，2）)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>（2）MaxPool2d(2, 2)</strong><br>MaxPool 最大池化层，池化层在卷积神经网络中的作用在于特征融合和降维。池化也是一种类似的卷积操作，只是池化层的所有参数都是超参数，是学习不到的。maxpooling有局部不变性而且可以提取显著特征的同时降低模型的参数，从而降低模型的过拟合。只提取了显著特征，而舍弃了不显著的信息，是的模型的参数减少了，从而一定程度上可以缓解过拟合的产生。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class torch.nn.MaxPool2d(kernel_size, stride&#x3D;None, padding&#x3D;0, dilation&#x3D;1, return_indices&#x3D;False, ceil_mode&#x3D;False)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">N：输出大小</span><br><span class="line">W：输入大小    24*24</span><br><span class="line">F：卷积核大小    5*5</span><br><span class="line">P：填充值的大小    0默认值</span><br><span class="line">S：步长大小    1默认值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">N&#x3D;(W-F+2P)&#x2F;S+1&#x3D;(24-2 + 2*0)&#x2F;2 + 1 &#x3D; 12</span><br><span class="line">输出为：10*12*12</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>（3）conv2d(10,20,5)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">N：输出大小</span><br><span class="line">W：输入大小    12*12</span><br><span class="line">F：卷积核大小    5*5</span><br><span class="line">P：填充值的大小    0默认值</span><br><span class="line">S：步长大小    1默认值</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">N&#x3D;(W-F+2P)&#x2F;S+1&#x3D;(12-5 + 2*0)&#x2F;1 + 1 &#x3D; 8</span><br><span class="line">输出为：20*8*8</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>（4）MaxPool2d(2, 2)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">N：输出大小</span><br><span class="line">W：输入大小    8*8</span><br><span class="line">F：卷积核大小    5*5</span><br><span class="line">P：填充值的大小    0默认值</span><br><span class="line">S：步长大小    1默认值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">N&#x3D;(W-F+2P)&#x2F;S+1&#x3D;(8-2 + 2*0)&#x2F;2 + 1 &#x3D; 4</span><br><span class="line">输出为：10*4*4</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>（5）fully-connect Linear(160, 50)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：10*4*4&#x3D;160</span><br><span class="line">输出：50</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>（6）fully-connect Linear(50, 10)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：50</span><br><span class="line">输出：10</span><br></pre></td></tr></table></figure>
+<hr>
+<p>所以，整个实例的训练过程数据流动为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def forward(self, input):</span><br><span class="line">    x &#x3D; self.pool1(F.relu(self.conv1(input)))</span><br><span class="line">    x &#x3D; self.pool2(F.relu(self.conv2(x)))</span><br><span class="line">    x &#x3D; self.fc2(self.fc1(x))</span><br></pre></td></tr></table></figure>
+<p>激活函数Relu，在神经网络中的作用是：通过加权的输入进行非线性组合产生非线性决策边界<br>简单的来说就是增加非线性作用。<br>在深层卷积神经网络中使用激活函数同样也是增加非线性，主要是为了解决sigmoid函数带来的梯度消失问题。</p>
+</section>
+    <!-- Tags START -->
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/post/d18c4792.html">
+        <span class="nav-arrow">← </span>
+        
+          （pytorch实战 菜鸟入门）使用Pytorch实现小型卷积神经网络网络
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = '182.92.88.231/post/ff309379.html';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+  <script>
+    var gitmentConfig = "james ruslin";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "pytorch卷积层与池化层输出的尺寸的计算公式详解",
+        owner: "james ruslin",
+        repo: "ikm565.github.io",
+        oauth: {
+          client_id: "82bb261ea3f30b3735f8",
+          client_secret: "e8f3343a711d578e043d5d0c72abb7e05d3b48bc"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

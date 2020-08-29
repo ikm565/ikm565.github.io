@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="james&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      （pytorch实战 菜鸟入门）使用Pytorch实现小型卷积神经网络网络 | james ruslin&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+    
+<script src="/js/gitment.js"></script>
+
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 5.0.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>james ruslin's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>（pytorch实战 菜鸟入门）使用Pytorch实现小型卷积神经网络网络</h2>
+  <p class="post-date">2020-08-29</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h2><p>卷积神经网络中每层卷积层（Convolutional layer）由若干卷积单元组成，每个卷积单元的参数都是通过反向传播算法最佳化得到的。卷积运算的目的是提取输入的不同特征，第一层卷积层可能只能提取一些低级的特征如边缘、线条和角等层级，更多层的网路能从低级特征中迭代提取更复杂的特征。<br>·<br><strong>pytorch的卷积层：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class torch.nn.Conv1d(in_channels, out_channels, kernel_size, stride&#x3D;1, padding&#x3D;0, dilation&#x3D;1, groups&#x3D;1, bias&#x3D;True)</span><br></pre></td></tr></table></figure>
+<p>一维卷积层，输入的尺度是(N, C_in,L)，输出尺度（ N,C_out,L_out）的计算方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">out(N_i, C_&#123;out_j&#125;)&#x3D;bias(C &#123;out_j&#125;)+\sum^&#123;C&#123;in&#125;-1&#125;&#123;k&#x3D;0&#125;weight(C&#123;out_j&#125;,k)\bigotimes input(N_i,k)</span><br><span class="line">bigotimes: 表示相关系数计算</span><br><span class="line">stride: 控制相关系数的计算步长</span><br><span class="line">dilation: 用于控制内核点之间的距离，详细描述在[这里](https:&#x2F;&#x2F;github.com&#x2F;vdumoulin&#x2F;conv_arithmetic&#x2F;blob&#x2F;master&#x2F;README.md)</span><br><span class="line">groups: 控制输入和输出之间的连接， group&#x3D;1，输出是所有的输入的卷积；group&#x3D;2，此时相当于有并排的两个卷积层，每个卷积层计算输入通道的一半，并且产生的输出是输出通道的一半，随后将这两个输出连接起来。</span><br></pre></td></tr></table></figure>
+<p>参数说明如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Parameters：</span><br><span class="line"></span><br><span class="line">in_channels(int) – 输入信号的通道</span><br><span class="line">out_channels(int) – 卷积产生的通道</span><br><span class="line">kerner_size(int or tuple) - 卷积核的尺寸</span><br><span class="line">stride(int or tuple, optional) - 卷积步长</span><br><span class="line">padding (int or tuple, optional)- 输入的每一条边补充0的层数</span><br><span class="line">dilation(int or tuple, &#96;optional&#96;&#96;) – 卷积核元素之间的间距</span><br><span class="line">groups(int, optional) – 从输入通道到输出通道的阻塞连接数</span><br><span class="line">bias(bool, optional) - 如果bias&#x3D;True，添加偏置</span><br></pre></td></tr></table></figure>
+<p><strong>举例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">m &#x3D; nn.Conv1d(16, 33, 3, stride&#x3D;2)</span><br><span class="line">input &#x3D; Variable(torch.randn(20, 16, 50))</span><br><span class="line">output &#x3D; m(input)</span><br><span class="line">print(output.size())</span><br><span class="line">#torch.Size([20, 33, 24])</span><br></pre></td></tr></table></figure>
+<p><strong>二维卷积层：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride&#x3D;1, padding&#x3D;0, dilation&#x3D;1, groups&#x3D;1, bias&#x3D;True)</span><br></pre></td></tr></table></figure>
+<p><strong>例子：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; # With square kernels and equal stride</span><br><span class="line">&gt;&gt;&gt; m &#x3D; nn.Conv2d(16, 33, 3, stride&#x3D;2)</span><br><span class="line">&gt;&gt;&gt; # non-square kernels and unequal stride and with padding</span><br><span class="line">&gt;&gt;&gt; m &#x3D; nn.Conv2d(16, 33, (3, 5), stride&#x3D;(2, 1), padding&#x3D;(4, 2))</span><br><span class="line">&gt;&gt;&gt; # non-square kernels and unequal stride and with padding and dilation</span><br><span class="line">&gt;&gt;&gt; m &#x3D; nn.Conv2d(16, 33, (3, 5), stride&#x3D;(2, 1), padding&#x3D;(4, 2), dilation&#x3D;(3, 1))</span><br><span class="line">&gt;&gt;&gt; input &#x3D; autograd.Variable(torch.randn(20, 16, 50, 100))</span><br><span class="line">&gt;&gt;&gt; output &#x3D; m(input)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class torch.nn.MaxPool1d(kernel_size, stride&#x3D;None, padding&#x3D;0, dilation&#x3D;1, return_indices&#x3D;False, ceil_mode&#x3D;False)</span><br></pre></td></tr></table></figure>
+<p>对于输入信号的输入通道，提供1维最大池化（max pooling）操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">参数：</span><br><span class="line"></span><br><span class="line">kernel_size(int or tuple) - max pooling的窗口大小</span><br><span class="line">stride(int or tuple, optional) - max pooling的窗口移动的步长。默认值是kernel_size</span><br><span class="line">padding(int or tuple, optional) - 输入的每一条边补充0的层数</span><br><span class="line">dilation(int or tuple, optional) – 一个控制窗口中元素步幅的参数</span><br><span class="line">return_indices - 如果等于True，会返回输出最大值的序号，对于上采样操作会有帮助</span><br><span class="line">ceil_mode - 如果等于True，计算输出信号大小的时候，会使用向上取整，代替默认的向下取整的操作</span><br></pre></td></tr></table></figure>
+<p><strong>例子：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; # pool of size&#x3D;3, stride&#x3D;2</span><br><span class="line">&gt;&gt;&gt; m &#x3D; nn.MaxPool1d(3, stride&#x3D;2)</span><br><span class="line">&gt;&gt;&gt; input &#x3D; autograd.Variable(torch.randn(20, 16, 50))</span><br><span class="line">&gt;&gt;&gt; output &#x3D; m(input)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class torch.nn.Linear(in_features, out_features, bias&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">参数：</span><br><span class="line">in_features - 每个输入样本的大小</span><br><span class="line">out_features - 每个输出样本的大小</span><br><span class="line">bias - 若设置为False，这层不会学习偏置。默认值：True</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><p>卷积神经网络（Convolutional Neural Network,CNN）是一种前馈神经网络，它的人工神经元可以响应一部分覆盖范围内的周围单元，对于大型图像处理有出色表现。</p>
+<hr>
+<h2 id="pytorch实现ConvNet-注释详解"><a href="#pytorch实现ConvNet-注释详解" class="headerlink" title="pytorch实现ConvNet(注释详解)"></a>pytorch实现ConvNet(注释详解)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">from torch.autograd import Variable</span><br><span class="line">#torch.autograd提供了类和函数用来对任意标量函数进行求导。</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line">class MNISTConvNet(nn.Module):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super(MNISTConvNet, self).__init__()</span><br><span class="line">        &#39;&#39;&#39;</span><br><span class="line">这是对继承自父类的属性进行初始化。而且是用父类的初始化方法来初始化继承的属性。</span><br><span class="line">也就是说，子类继承了父类的所有属性和方法，父类属性自然会用父类方法来进行初始化。</span><br><span class="line">        &#39;&#39;&#39;</span><br><span class="line">#定义网络结构</span><br><span class="line">        self.conv1 &#x3D; nn.Conv2d(1, 10, 5)</span><br><span class="line">        self.pool1 &#x3D; nn.MaxPool2d(2, 2)</span><br><span class="line">        self.conv2 &#x3D; nn.Conv2d(10, 20, 5)</span><br><span class="line">        self.pool2 &#x3D; nn.MaxPool2d(2, 2)</span><br><span class="line">        self.fc1 &#x3D; nn.Linear(320, 50)</span><br><span class="line">        self.fc2 &#x3D; nn.Linear(50, 10)</span><br><span class="line">    def forward(self, input):</span><br><span class="line">        x &#x3D; self.pool1(F.relu(self.conv1(input)))</span><br><span class="line">        x &#x3D; self.pool2(F.relu(self.conv2(x))).view(320)</span><br><span class="line">        x &#x3D; self.fc1(x)</span><br><span class="line">        x &#x3D; self.fc2(x)</span><br><span class="line">        return x</span><br><span class="line"></span><br><span class="line">net &#x3D; MNISTConvNet()</span><br><span class="line">print(net)</span><br><span class="line">input &#x3D; Variable(torch.randn(1, 1, 28, 28))</span><br><span class="line">out &#x3D; net(input)</span><br><span class="line">print(out.size())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="pytorch卷积层与池化层输出的尺寸的计算公式详解"><a href="#pytorch卷积层与池化层输出的尺寸的计算公式详解" class="headerlink" title="pytorch卷积层与池化层输出的尺寸的计算公式详解"></a>pytorch卷积层与池化层输出的尺寸的计算公式详解</h2><p>要设计卷积神经网络的结构，必须匹配层与层之间的输入与输出的尺寸，这就需要较好的计算输出尺寸<br><strong>我在<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42255269/article/details/108297401">这里</a>详细讲了如何计算尺寸，请浏览</strong></p>
+<hr>
+<h2 id="torch-nn-functional详解"><a href="#torch-nn-functional详解" class="headerlink" title="torch.nn.functional详解"></a>torch.nn.functional详解</h2><p><strong>· Convolution 函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.functional.conv1d(input, weight, bias&#x3D;None, stride&#x3D;1, padding&#x3D;0, dilation&#x3D;1, groups&#x3D;1)</span><br></pre></td></tr></table></figure>
+
+<p>对几个输入平面组成的输入信号应用1D卷积。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">参数： </span><br><span class="line">-  -input – 输入张量的形状 (minibatch x in_channels x iW)</span><br><span class="line">-  - weight – 过滤器的形状 (out_channels, in_channels, kW) </span><br><span class="line">- - bias – 可选偏置的形状 (out_channels) </span><br><span class="line">- - stride – 卷积核的步长，默认为1</span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; filters &#x3D; autograd.Variable(torch.randn(33, 16, 3))</span><br><span class="line">&gt;&gt;&gt; inputs &#x3D; autograd.Variable(torch.randn(20, 16, 50))</span><br><span class="line">&gt;&gt;&gt; F.conv1d(inputs, filters)</span><br></pre></td></tr></table></figure>
+<p><strong>· Pooling 函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.functional.avg_pool1d(input, kernel_size, stride&#x3D;None, padding&#x3D;0, ceil_mode&#x3D;False, count_include_pad&#x3D;True)</span><br></pre></td></tr></table></figure>
+<p>对由几个输入平面组成的输入信号进行一维平均池化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">参数： </span><br><span class="line">- kernel_size – 窗口的大小 </span><br><span class="line">- - stride – 窗口的步长。默认值为kernel_size </span><br><span class="line">- - padding – 在两边添加隐式零填充 </span><br><span class="line">- - ceil_mode – 当为True时，将使用ceil代替floor来计算输出形状 </span><br><span class="line">- - count_include_pad – 当为True时，这将在平均计算时包括补零</span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; # pool of square window of size&#x3D;3, stride&#x3D;2</span><br><span class="line">&gt;&gt;&gt; input &#x3D; Variable(torch.Tensor([[[1,2,3,4,5,6,7]]]))</span><br><span class="line">&gt;&gt;&gt; F.avg_pool1d(input, kernel_size&#x3D;3, stride&#x3D;2)</span><br><span class="line">Variable containing:</span><br><span class="line">(0 ,.,.) &#x3D;</span><br><span class="line">  2  4  6</span><br><span class="line">[torch.FloatTensor of size 1x1x3]</span><br></pre></td></tr></table></figure>
+<p><strong>· 非线性激活函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.functional.relu(input, inplace&#x3D;False)</span><br></pre></td></tr></table></figure>
+<p><strong>· Normalization 函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.functional.batch_norm(input, running_mean, running_var, weight&#x3D;None, bias&#x3D;None, training&#x3D;False, momentum&#x3D;0.1, eps&#x3D;1e-05)</span><br></pre></td></tr></table></figure>
+<p><strong>· 线性函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.functional.linear(input, weight, bias&#x3D;None)</span><br></pre></td></tr></table></figure>
+
+<p><strong>· Dropout 函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.functional.dropout(input, p&#x3D;0.5, training&#x3D;False, inplace&#x3D;False)</span><br></pre></td></tr></table></figure>
+
+<p><strong>· 距离函数（Distance functions）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.functional.pairwise_distance(x1, x2, p&#x3D;2, eps&#x3D;1e-06)</span><br></pre></td></tr></table></figure>
+
+<p>计算向量v1、v2之间的距离</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x1:第一个输入的张量</span><br><span class="line">x2:第二个输入的张量</span><br><span class="line">p:矩阵范数的维度。默认值是2，即二范数。</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; input1 &#x3D; autograd.Variable(torch.randn(100, 128))</span><br><span class="line">&gt;&gt;&gt; input2 &#x3D; autograd.Variable(torch.randn(100, 128))</span><br><span class="line">&gt;&gt;&gt; output &#x3D; F.pairwise_distance(input1, input2, p&#x3D;2)</span><br><span class="line">&gt;&gt;&gt; output.backward()</span><br></pre></td></tr></table></figure>
+
+<p><strong>· 损失函数（Loss functions）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.functional.nll_loss(input, target, weight&#x3D;None, size_average&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+<p>负的log likelihood损失函数.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">参数：</span><br><span class="line"> - input - (N,C) C 是类别的个数 </span><br><span class="line"> - - target - (N) 其大小是 0 &lt;&#x3D; targets[i] &lt;&#x3D; C-1 </span><br><span class="line"> - - weight (Variable, optional) – 一个可手动指定每个类别的权重。如果给定的话，必须是大小为nclasses的Variable </span><br><span class="line"> - - size_average (bool, optional) – 默认情况下，是mini-batchloss的平均值，然而，如果size_average&#x3D;False，则是mini-batchloss的总和。</span><br></pre></td></tr></table></figure>
+
+</section>
+    <!-- Tags START -->
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/post/12e99bdc.html">
+        <span class="nav-arrow">← </span>
+        
+          Windows下如何如何将项目上传至GitHub？
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/post/ff309379.html">
+        
+          pytorch卷积层与池化层输出的尺寸的计算公式详解
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = '182.92.88.231/post/d18c4792.html';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+  <script>
+    var gitmentConfig = "james ruslin";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "（pytorch实战 菜鸟入门）使用Pytorch实现小型卷积神经网络网络",
+        owner: "james ruslin",
+        repo: "ikm565.github.io",
+        oauth: {
+          client_id: "82bb261ea3f30b3735f8",
+          client_secret: "e8f3343a711d578e043d5d0c72abb7e05d3b48bc"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
