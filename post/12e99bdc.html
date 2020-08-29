@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="james&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Windows下如何如何将项目上传至GitHub？ | james ruslin&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+    
+<script src="/js/gitment.js"></script>
+
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 5.0.2"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>james ruslin's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Windows下如何如何将项目上传至GitHub？</h2>
+  <p class="post-date">2020-08-29</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="安装git客户端"><a href="#安装git客户端" class="headerlink" title="安装git客户端"></a>安装git客户端</h2><p>进入<a target="_blank" rel="noopener" href="https://git-scm.com/">官网</a>，点击右侧下载windows版本的软件包<br><img src="https://img-blog.csdnimg.cn/20200829110230750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>·<br>·<br><img src="https://img-blog.csdnimg.cn/20200829110942254.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>·<br>·<br><img src="https://img-blog.csdnimg.cn/20200829110301862.png#pic_center" alt="在这里插入图片描述"><br>·<br><strong>如果下载慢的话，给一个<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/git-for-windows/">传送门</a>，可以快速下载：</strong><br><img src="https://img-blog.csdnimg.cn/20200829112153667.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>·<br>·<br>·<br><img src="https://img-blog.csdnimg.cn/20200829112437965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>·<br><strong>双击安装</strong><br><img src="https://img-blog.csdnimg.cn/20200829112747637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>一直点击下一步就可，安装位置可以自己选择一下</strong></p>
+<h2 id="Github创建仓库"><a href="#Github创建仓库" class="headerlink" title="Github创建仓库"></a>Github创建仓库</h2><p><img src="https://img-blog.csdnimg.cn/2020082911063491.png#pic_center" alt="在这里插入图片描述"><br><strong>填写项目名称以及base 描述</strong><br><img src="https://img-blog.csdnimg.cn/20200829110732954.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>·<br>在git安装目录双击启动git bash</p>
+<p><img src="https://img-blog.csdnimg.cn/20200829113134864.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>·<br><img src="https://img-blog.csdnimg.cn/20200829113234619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>·<br>使用cd 命令 转移到<strong>预上传的项目的目录下</strong><br><img src="https://img-blog.csdnimg.cn/20200829113540481.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>·<br>输入pwd查看当前文件夹位置<br><img src="https://img-blog.csdnimg.cn/20200829113643525.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="使用如下命令创建git仓库"><a href="#使用如下命令创建git仓库" class="headerlink" title="使用如下命令创建git仓库"></a>使用如下命令创建git仓库</h2><p><strong>先设置email和username</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email &#39;your email&#39;</span><br><span class="line">git config --global user.name &#39;your name&#39;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>创建本地仓库并与github仓库关联</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init  #将该文件夹变成Git可以管理的仓库</span><br><span class="line">git add .  #将所有文件提交到暂存区</span><br><span class="line">git commit -m &#39;说明&#39;   #提交到版本库中</span><br><span class="line">git remote add origin https:&#x2F;&#x2F;github.com&#x2F;ikm565&#x2F;PyQt-QQ.git</span><br><span class="line">#将本地仓库与GitHub网站的仓库进行关联。</span><br></pre></td></tr></table></figure>
+<p>github仓库链接在这：<br><img src="https://img-blog.csdnimg.cn/20200829114626824.png#pic_center" alt="在这里插入图片描述"><br>·<br>·<br>·<br>在将本地仓库与GitHub网站上的仓库进行关联后，便可进行推送了，但是在进行推送时，GitHub网站上的仓库并非是空的，因此需要将两者进行合并才行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase origin master #合并</span><br><span class="line">git push -u origin master  #推送</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200829115314578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>再次查看仓库，已经有了项目：</strong><br><img src="https://img-blog.csdnimg.cn/20200829115441358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMjU1MjY5,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="如果更新了项目，通过以下命令进行维护："><a href="#如果更新了项目，通过以下命令进行维护：" class="headerlink" title="如果更新了项目，通过以下命令进行维护："></a>如果更新了项目，通过以下命令进行维护：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add -A               #将文件的修改上传到暂存区</span><br><span class="line">git commit -m &#39;说明&#39;      #提交到本地仓库</span><br><span class="line">git push origin master   #推送到GitHub仓库</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="附上我的构建过程："><a href="#附上我的构建过程：" class="headerlink" title="附上我的构建过程："></a>附上我的构建过程：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git remote add origin  https:&#x2F;&#x2F;github.com&#x2F;ikm565&#x2F;PyQt-QQ.git</span><br><span class="line">fatal: remote origin already exists.</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git remote add origin https:&#x2F;&#x2F;github.com&#x2F;ikm565&#x2F;PyQt-QQ.git</span><br><span class="line">fatal: remote origin already exists.</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git pull --rebase origin master</span><br><span class="line">fatal: &#39;pwd&#39; does not appear to be a git repository</span><br><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git init</span><br><span class="line">Reinitialized existing Git repository in D:&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final&#x2F;.git&#x2F;</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git add .</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git commit -m &#39;first git&#39;</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git init</span><br><span class="line">Reinitialized existing Git repository in D:&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final&#x2F;.git&#x2F;</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in D:&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final&#x2F;.git&#x2F;</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git add .</span><br><span class="line">warning: LF will be replaced by CRLF in .gitignore.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in .idea&#x2F;inspectionProfiles&#x2F;profiles_settings.xml.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in Dialog_add.ui.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in frist.qrc.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in group.ui.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in login.ui.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in main_interface.ui.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in single_person.ui.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in web绔?.idea&#x2F;dbnavigator.xml.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in web绔?.idea&#x2F;flasky.iml.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in web绔?.idea&#x2F;misc.xml.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in web绔?.idea&#x2F;modules.xml.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in web绔?.idea&#x2F;vcs.xml.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in web绔?.idea&#x2F;workspace.xml.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git commit -m &#39;first git&#39;</span><br><span class="line">[master (root-commit) 21e64c4] first git</span><br><span class="line"> 83 files changed, 5155 insertions(+)</span><br><span class="line"> create mode 100644 .gitignore</span><br><span class="line"> create mode 100644 .idea&#x2F;inspectionProfiles&#x2F;profiles_settings.xml</span><br><span class="line"> create mode 100644 .idea&#x2F;misc.xml</span><br><span class="line"> create mode 100644 .idea&#x2F;modules.xml</span><br><span class="line"> create mode 100644 .idea&#x2F;pyqt5-QQ.iml</span><br><span class="line"> create mode 100644 .idea&#x2F;workspace.xml</span><br><span class="line"> create mode 100644 Dialog_add.py</span><br><span class="line"> create mode 100644 Dialog_add.ui</span><br><span class="line"> create mode 100644 frist.qrc</span><br><span class="line"> create mode 100644 group.py</span><br><span class="line"> create mode 100644 group.ui</span><br><span class="line"> create mode 100644 image&#x2F;Icon_head.jpeg</span><br><span class="line"> create mode 100644 image&#x2F;Icon_head.png</span><br><span class="line"> create mode 100644 image&#x2F;Icon_logger.png</span><br><span class="line"> create mode 100644 image&#x2F;Icon_user.png</span><br><span class="line"> create mode 100644 image&#x2F;QQ1.jpg</span><br><span class="line"> create mode 100644 image&#x2F;QQicon.ico</span><br><span class="line"> create mode 100644 image&#x2F;contact_green.png</span><br><span class="line"> create mode 100644 image&#x2F;icon.jpg</span><br><span class="line"> create mode 100644 image&#x2F;myicon_1.jpeg</span><br><span class="line"> create mode 100644 image&#x2F;myicon_1.png</span><br><span class="line"> create mode 100644 image&#x2F;partjob.png</span><br><span class="line"> create mode 100644 image&#x2F;qq.jpeg</span><br><span class="line"> create mode 100644 image&#x2F;wechat.png</span><br><span class="line"> create mode 100644 login.py</span><br><span class="line"> create mode 100644 login.ui</span><br><span class="line"> create mode 100644 main_interface.py</span><br><span class="line"> create mode 100644 main_interface.ui</span><br><span class="line"> create mode 100644 res&#x2F;0.jpg</span><br><span class="line"> create mode 100644 res&#x2F;1.jpg</span><br><span class="line"> create mode 100644 res&#x2F;10.jpg</span><br><span class="line"> create mode 100644 res&#x2F;11.jpg</span><br><span class="line"> create mode 100644 res&#x2F;12.jpg</span><br><span class="line"> create mode 100644 res&#x2F;13.jpg</span><br><span class="line"> create mode 100644 res&#x2F;14.jpg</span><br><span class="line"> create mode 100644 res&#x2F;15.jpg</span><br><span class="line"> create mode 100644 res&#x2F;16.jpg</span><br><span class="line"> create mode 100644 res&#x2F;16.png</span><br><span class="line"> create mode 100644 res&#x2F;17.jpg</span><br><span class="line"> create mode 100644 res&#x2F;18.jpg</span><br><span class="line"> create mode 100644 res&#x2F;19.jpg</span><br><span class="line"> create mode 100644 res&#x2F;2.jpg</span><br><span class="line"> create mode 100644 res&#x2F;20.jpg</span><br><span class="line"> create mode 100644 res&#x2F;21.jpg</span><br><span class="line"> create mode 100644 res&#x2F;22.jpg</span><br><span class="line"> create mode 100644 res&#x2F;23.jpg</span><br><span class="line"> create mode 100644 res&#x2F;24.jpg</span><br><span class="line"> create mode 100644 res&#x2F;25.jpg</span><br><span class="line"> create mode 100644 res&#x2F;3.jpg</span><br><span class="line"> create mode 100644 res&#x2F;4.jpg</span><br><span class="line"> create mode 100644 res&#x2F;5.jpg</span><br><span class="line"> create mode 100644 res&#x2F;6.jpg</span><br><span class="line"> create mode 100644 res&#x2F;7.jpg</span><br><span class="line"> create mode 100644 res&#x2F;8.jpg</span><br><span class="line"> create mode 100644 res&#x2F;9.jpg</span><br><span class="line"> create mode 100644 res&#x2F;default.ico</span><br><span class="line"> create mode 100644 res&#x2F;log.ico</span><br><span class="line"> create mode 100644 server.py</span><br><span class="line"> create mode 100644 server_downloads&#x2F;0.jpg</span><br><span class="line"> create mode 100644 server_downloads&#x2F;1.jpg</span><br><span class="line"> create mode 100644 server_downloads&#x2F;13.jpg</span><br><span class="line"> create mode 100644 server_downloads&#x2F;4.jpg</span><br><span class="line"> create mode 100644 server_downloads&#x2F;6.jpg</span><br><span class="line"> create mode 100644 server_downloads&#x2F;7.jpg</span><br><span class="line"> create mode 100644 single_person.py</span><br><span class="line"> create mode 100644 single_person.ui</span><br><span class="line"> create mode 100644 test&#x2F;test.py</span><br><span class="line"> create mode 100644 test&#x2F;test2.py</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;.idea&#x2F;dbnavigator.xml&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;.idea&#x2F;flasky.iml&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;.idea&#x2F;misc.xml&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;.idea&#x2F;modules.xml&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;.idea&#x2F;vcs.xml&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;.idea&#x2F;workspace.xml&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;__init__.py&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;config.py&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;register&#x2F;__init__.py&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;register&#x2F;main_app.py&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;register&#x2F;templates&#x2F;change.html&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;register&#x2F;templates&#x2F;change_after.html&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;register&#x2F;templates&#x2F;change_sign.html&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;register&#x2F;templates&#x2F;loginin.html&quot;</span><br><span class="line"> create mode 100644 &quot;web\347\253\257&#x2F;register&#x2F;templates&#x2F;regist.html&quot;</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git remote add origin https:&#x2F;&#x2F;github.com&#x2F;ikm565&#x2F;PyQt-QQ.git</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git pull --rebase origin master</span><br><span class="line">fatal: couldn&#39;t find remote ref master</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git push -u origin master</span><br><span class="line">Enumerating objects: 88, done.</span><br><span class="line">Counting objects: 100% (88&#x2F;88), done.</span><br><span class="line">Delta compression using up to 8 threads</span><br><span class="line">Compressing objects: 100% (85&#x2F;85), done.</span><br><span class="line">Writing objects: 100% (88&#x2F;88), 437.98 KiB | 13.27 MiB&#x2F;s, done.</span><br><span class="line">Total 88 (delta 14), reused 0 (delta 0), pack-reused 0</span><br><span class="line">remote: Resolving deltas: 100% (14&#x2F;14), done.</span><br><span class="line">To https:&#x2F;&#x2F;github.com&#x2F;ikm565&#x2F;PyQt-QQ.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">Branch &#39;master&#39; set up to track remote branch &#39;master&#39; from &#39;origin&#39;.</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git ass -A</span><br><span class="line">git: &#39;ass&#39; is not a git command. See &#39;git --help&#39;.</span><br><span class="line"></span><br><span class="line">The most similar commands are</span><br><span class="line">        add</span><br><span class="line">        askpass</span><br><span class="line">        lfs</span><br><span class="line">        stash</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git add -A</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ git commit -m &#39;first git&#39;</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up to date with &#39;origin&#x2F;master&#39;.</span><br><span class="line"></span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$ ^C</span><br><span class="line"></span><br><span class="line">20626@LAPTOP-T9NGUSPL MINGW64 &#x2F;d&#x2F;workspace&#x2F;python Workspace&#x2F;py-communicate-final (master)</span><br><span class="line">$</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</section>
+    <!-- Tags START -->
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/post/bab53c1d.html">
+        <span class="nav-arrow">← </span>
+        
+          （菜鸟入门）使用pytorch框架实现前馈神经网络
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = '182.92.88.231/post/12e99bdc.html';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+  <script>
+    var gitmentConfig = "james ruslin";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Windows下如何如何将项目上传至GitHub？",
+        owner: "james ruslin",
+        repo: "ikm565.github.io",
+        oauth: {
+          client_id: "82bb261ea3f30b3735f8",
+          client_secret: "e8f3343a711d578e043d5d0c72abb7e05d3b48bc"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
